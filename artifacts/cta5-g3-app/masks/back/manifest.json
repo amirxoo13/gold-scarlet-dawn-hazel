@@ -1,0 +1,74 @@
+{
+  "source": "/home/workdir/artifacts/cta5-g3-app/input/back.png",
+  "model": "fashn-ai/fashn-human-parser",
+  "size": [
+    414,
+    1264
+  ],
+  "parts": [
+    {
+      "index": 0,
+      "label": "background",
+      "score": null,
+      "file": "00_background.png"
+    },
+    {
+      "index": 1,
+      "label": "face",
+      "score": null,
+      "file": "01_face.png"
+    },
+    {
+      "index": 2,
+      "label": "hair",
+      "score": null,
+      "file": "02_hair.png"
+    },
+    {
+      "index": 3,
+      "label": "top",
+      "score": null,
+      "file": "03_top.png"
+    },
+    {
+      "index": 4,
+      "label": "pants",
+      "score": null,
+      "file": "04_pants.png"
+    },
+    {
+      "index": 5,
+      "label": "arms",
+      "score": null,
+      "file": "05_arms.png"
+    },
+    {
+      "index": 6,
+      "label": "hands",
+      "score": null,
+      "file": "06_hands.png"
+    },
+    {
+      "index": 7,
+      "label": "legs",
+      "score": null,
+      "file": "07_legs.png"
+    },
+    {
+      "index": 8,
+      "label": "feet",
+      "score": null,
+      "file": "08_feet.png"
+    },
+    {
+      "index": 9,
+      "label": "torso",
+      "score": null,
+      "file": "09_torso.png"
+    }
+  ],
+  "notes": [
+    "No left/right split is invented when the model returns a single 'arms' or 'legs' mask.",
+    "This output is not a G3 PSD."
+  ]
+}

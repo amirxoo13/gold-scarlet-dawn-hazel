@@ -1,0 +1,1177 @@
+{
+  "name": "G3 Rig Lab",
+  "character": "SHARAF #9",
+  "template": {
+    "file": "HumanwithSpriteHand.psd",
+    "source": "Cartoon_Animator_5_PSD_Pipeline_Resource.zip",
+    "url": "https://file.reallusion.com/cta/Cartoon_Animator_5_PSD_Pipeline_Resource.zip",
+    "size": [
+      1916,
+      2152
+    ],
+    "contentBox": [
+      184,
+      180,
+      1731,
+      1973
+    ]
+  },
+  "parser": {
+    "id": "fashn-ai/fashn-human-parser",
+    "lr": "mattmdjaga/segformer_b2_clothes"
+  },
+  "pack": {
+    "href": "/lab/SHARAF_G3_CTA5.zip",
+    "file": "SHARAF_G3_CTA5.zip"
+  },
+  "views": {
+    "front": {
+      "source": "/lab/front.png",
+      "overlay": "/lab/overlays/front.png",
+      "cutout": "/lab/overlays/front_cutout.png",
+      "filled": "/lab/front_filled.png",
+      "psd": "/lab/front_filled.psd",
+      "inpaint": "/lab/inpaint/front.png",
+      "holes": "/lab/inpaint/front_holes.png",
+      "inpaintMethod": null,
+      "inpaintPixels": {
+        "underarm": 0,
+        "forehead": 0
+      },
+      "placed": [
+        "Face",
+        "Hip",
+        "LHand",
+        "RHand",
+        "LArm",
+        "RArm",
+        "LForearm",
+        "RForearm",
+        "LFoot",
+        "RFoot",
+        "LThigh",
+        "RThigh",
+        "LShank",
+        "RShank"
+      ],
+      "modes": {
+        "Face": "fit",
+        "Hip": "fit",
+        "LHand": "fit|rot90",
+        "RHand": "fit|rot-90",
+        "LArm": "fit|rot90",
+        "RArm": "fit|rot-90",
+        "LForearm": "fit|rot90",
+        "RForearm": "fit|rot-90",
+        "LFoot": "fit",
+        "RFoot": "fit",
+        "LThigh": "fit",
+        "RThigh": "fit",
+        "LShank": "fit",
+        "RShank": "fit"
+      },
+      "splits": {
+        "arms": "parser-lr",
+        "hands": "midline",
+        "feet": "feet-midline",
+        "legs": "parser-lr"
+      },
+      "dests": {
+        "Face": [
+          818,
+          229,
+          1098,
+          666
+        ],
+        "Hip": [
+          761,
+          449,
+          1154,
+          1246
+        ],
+        "LHand": [
+          1496,
+          696,
+          1731,
+          869
+        ],
+        "RHand": [
+          184,
+          697,
+          419,
+          870
+        ],
+        "LArm": [
+          1038,
+          671,
+          1383,
+          828
+        ],
+        "RArm": [
+          532,
+          673,
+          877,
+          830
+        ],
+        "LForearm": [
+          1287,
+          692,
+          1572,
+          814
+        ],
+        "RForearm": [
+          344,
+          692,
+          629,
+          814
+        ],
+        "LFoot": [
+          968,
+          1755,
+          1146,
+          1969
+        ],
+        "RFoot": [
+          771,
+          1759,
+          949,
+          1973
+        ],
+        "LThigh": [
+          956,
+          1116,
+          1105,
+          1518
+        ],
+        "RThigh": [
+          808,
+          1115,
+          957,
+          1518
+        ],
+        "LShank": [
+          955,
+          1440,
+          1087,
+          1824
+        ],
+        "RShank": [
+          825,
+          1440,
+          958,
+          1824
+        ]
+      },
+      "slots": {
+        "Face": [
+          818,
+          229,
+          1098,
+          666
+        ],
+        "Hip": [
+          761,
+          449,
+          1154,
+          1246
+        ],
+        "LHand": [
+          1496,
+          696,
+          1731,
+          869
+        ],
+        "RHand": [
+          184,
+          697,
+          419,
+          870
+        ],
+        "LArm": [
+          1038,
+          671,
+          1383,
+          828
+        ],
+        "RArm": [
+          532,
+          673,
+          877,
+          830
+        ],
+        "LForearm": [
+          1287,
+          692,
+          1572,
+          814
+        ],
+        "RForearm": [
+          344,
+          692,
+          629,
+          814
+        ],
+        "LFoot": [
+          968,
+          1755,
+          1146,
+          1969
+        ],
+        "RFoot": [
+          771,
+          1759,
+          949,
+          1973
+        ],
+        "LThigh": [
+          956,
+          1116,
+          1105,
+          1518
+        ],
+        "RThigh": [
+          808,
+          1115,
+          957,
+          1518
+        ],
+        "LShank": [
+          955,
+          1440,
+          1087,
+          1824
+        ],
+        "RShank": [
+          825,
+          1440,
+          958,
+          1824
+        ]
+      },
+      "bonesHuman": {
+        "ObjectPivot": [
+          957,
+          1857
+        ],
+        "LHand_Nub": [
+          1600,
+          752
+        ],
+        "LHand": [
+          1536,
+          752
+        ],
+        "LForearm": [
+          1337,
+          752
+        ],
+        "LArm": [
+          1106,
+          752
+        ],
+        "RHand_Nub": [
+          315,
+          752
+        ],
+        "RHand": [
+          378,
+          752
+        ],
+        "RForearm": [
+          579,
+          754
+        ],
+        "RArm": [
+          807,
+          752
+        ],
+        "Head_Nub": [
+          956,
+          505
+        ],
+        "Head": [
+          956,
+          581
+        ],
+        "Neck": [
+          956,
+          666
+        ],
+        "Torso": [
+          956,
+          932
+        ],
+        "LToe_Nub": [
+          1133,
+          1857
+        ],
+        "LToe": [
+          1069,
+          1857
+        ],
+        "LFoot2": [
+          1010,
+          1857
+        ],
+        "LFoot": [
+          1010,
+          1784
+        ],
+        "LShank": [
+          1018,
+          1478
+        ],
+        "LThigh": [
+          1020,
+          1172
+        ],
+        "RToe_Nub": [
+          780,
+          1857
+        ],
+        "RToe": [
+          845,
+          1857
+        ],
+        "RFoot2": [
+          902,
+          1857
+        ],
+        "RFoot": [
+          902,
+          1784
+        ],
+        "RShank": [
+          895,
+          1478
+        ],
+        "RThigh": [
+          892,
+          1172
+        ],
+        "Hip": [
+          956,
+          1123
+        ],
+        "Root": [
+          956,
+          1856
+        ]
+      },
+      "bonesHead": {
+        "LeftBrow": [
+          979,
+          432
+        ],
+        "RightBrow": [
+          935,
+          432
+        ],
+        "LeftEye": [
+          1014,
+          461
+        ],
+        "RightEye": [
+          900,
+          461
+        ],
+        "Nose": [
+          957,
+          484
+        ],
+        "Mouth": [
+          957,
+          552
+        ],
+        "LeftEar>LEarRing": [
+          1101,
+          504
+        ],
+        "LeftEar": [
+          1078,
+          458
+        ],
+        "RightEar>REarRing": [
+          810,
+          500
+        ],
+        "RightEar": [
+          836,
+          458
+        ],
+        "FrontHair": [
+          957,
+          295
+        ],
+        "BackHair": [
+          957,
+          341
+        ],
+        "Face": [
+          957,
+          581
+        ]
+      },
+      "hiddenDummyPixels": 62,
+      "movedBones": 0,
+      "contentBox": [
+        184,
+        180,
+        1731,
+        1973
+      ],
+      "canvas": [
+        1916,
+        2152
+      ],
+      "masks": [
+        {
+          "label": "arms",
+          "file": "/lab/masks/front/fill_arms.png",
+          "color": "#e8b08c",
+          "coverage": 0.040298,
+          "bbox": [
+            58,
+            411,
+            423,
+            645
+          ]
+        },
+        {
+          "label": "face",
+          "file": "/lab/masks/front/fill_face.png",
+          "color": "#f4c4a8",
+          "coverage": 0.018993,
+          "bbox": [
+            177,
+            100,
+            300,
+            231
+          ]
+        },
+        {
+          "label": "feet",
+          "file": "/lab/masks/front/fill_feet.png",
+          "color": "#1c1c20",
+          "coverage": 0.024525,
+          "bbox": [
+            87,
+            1116,
+            391,
+            1225
+          ]
+        },
+        {
+          "label": "hair",
+          "file": "/lab/masks/front/fill_hair.png",
+          "color": "#3a2a24",
+          "coverage": 0.009835,
+          "bbox": [
+            177,
+            60,
+            297,
+            192
+          ]
+        },
+        {
+          "label": "hands",
+          "file": "/lab/masks/front/fill_hands.png",
+          "color": "#d4a07a",
+          "coverage": 0.01561,
+          "bbox": [
+            60,
+            630,
+            419,
+            742
+          ]
+        },
+        {
+          "label": "legs",
+          "file": "/lab/masks/front/fill_legs.png",
+          "color": "#e8e8ec",
+          "coverage": 0.020244,
+          "bbox": [
+            123,
+            837,
+            359,
+            918
+          ]
+        },
+        {
+          "label": "pants",
+          "file": "/lab/masks/front/fill_pants.png",
+          "color": "#303038",
+          "coverage": 0.130247,
+          "bbox": [
+            104,
+            649,
+            374,
+            1119
+          ]
+        },
+        {
+          "label": "top",
+          "file": "/lab/masks/front/fill_top.png",
+          "color": "#d64040",
+          "coverage": 0.178884,
+          "bbox": [
+            69,
+            229,
+            407,
+            655
+          ]
+        },
+        {
+          "label": "torso",
+          "file": "/lab/masks/front/fill_torso.png",
+          "color": "#b03030",
+          "coverage": 0.008368,
+          "bbox": [
+            194,
+            190,
+            283,
+            288
+          ]
+        }
+      ],
+      "parser": "fashn-ai/fashn-human-parser",
+      "lrParser": "mattmdjaga/segformer_b2_clothes"
+    },
+    "back": {
+      "source": "/lab/back.png",
+      "overlay": "/lab/overlays/back.png",
+      "cutout": "/lab/overlays/back_cutout.png",
+      "filled": "/lab/back_filled.png",
+      "psd": "/lab/back_filled.psd",
+      "inpaint": "/lab/inpaint/back.png",
+      "holes": "/lab/inpaint/back_holes.png",
+      "inpaintMethod": null,
+      "inpaintPixels": {
+        "underarm": 0,
+        "forehead": 0
+      },
+      "placed": [
+        "Face",
+        "Hip",
+        "LHand",
+        "RHand",
+        "LArm",
+        "RArm",
+        "LForearm",
+        "RForearm",
+        "LFoot",
+        "RFoot",
+        "LThigh",
+        "RThigh",
+        "LShank",
+        "RShank"
+      ],
+      "modes": {
+        "Face": "fit",
+        "Hip": "fit",
+        "LHand": "fit|rot90",
+        "RHand": "fit|rot-90",
+        "LArm": "fit|rot90",
+        "RArm": "fit|rot-90",
+        "LForearm": "fit|rot90",
+        "RForearm": "fit|rot-90",
+        "LFoot": "fit",
+        "RFoot": "fit",
+        "LThigh": "fit",
+        "RThigh": "fit",
+        "LShank": "fit",
+        "RShank": "fit"
+      },
+      "splits": {
+        "arms": "parser-lr",
+        "hands": "midline",
+        "feet": "feet-midline",
+        "legs": "parser-lr"
+      },
+      "dests": {
+        "Face": [
+          818,
+          229,
+          1098,
+          666
+        ],
+        "Hip": [
+          761,
+          449,
+          1154,
+          1246
+        ],
+        "LHand": [
+          1496,
+          696,
+          1731,
+          869
+        ],
+        "RHand": [
+          184,
+          697,
+          419,
+          870
+        ],
+        "LArm": [
+          1038,
+          671,
+          1383,
+          828
+        ],
+        "RArm": [
+          532,
+          673,
+          877,
+          830
+        ],
+        "LForearm": [
+          1287,
+          692,
+          1572,
+          814
+        ],
+        "RForearm": [
+          344,
+          692,
+          629,
+          814
+        ],
+        "LFoot": [
+          968,
+          1755,
+          1146,
+          1969
+        ],
+        "RFoot": [
+          771,
+          1759,
+          949,
+          1973
+        ],
+        "LThigh": [
+          956,
+          1116,
+          1105,
+          1518
+        ],
+        "RThigh": [
+          808,
+          1115,
+          957,
+          1518
+        ],
+        "LShank": [
+          955,
+          1440,
+          1087,
+          1824
+        ],
+        "RShank": [
+          825,
+          1440,
+          958,
+          1824
+        ]
+      },
+      "slots": {
+        "Face": [
+          818,
+          229,
+          1098,
+          666
+        ],
+        "Hip": [
+          761,
+          449,
+          1154,
+          1246
+        ],
+        "LHand": [
+          1496,
+          696,
+          1731,
+          869
+        ],
+        "RHand": [
+          184,
+          697,
+          419,
+          870
+        ],
+        "LArm": [
+          1038,
+          671,
+          1383,
+          828
+        ],
+        "RArm": [
+          532,
+          673,
+          877,
+          830
+        ],
+        "LForearm": [
+          1287,
+          692,
+          1572,
+          814
+        ],
+        "RForearm": [
+          344,
+          692,
+          629,
+          814
+        ],
+        "LFoot": [
+          968,
+          1755,
+          1146,
+          1969
+        ],
+        "RFoot": [
+          771,
+          1759,
+          949,
+          1973
+        ],
+        "LThigh": [
+          956,
+          1116,
+          1105,
+          1518
+        ],
+        "RThigh": [
+          808,
+          1115,
+          957,
+          1518
+        ],
+        "LShank": [
+          955,
+          1440,
+          1087,
+          1824
+        ],
+        "RShank": [
+          825,
+          1440,
+          958,
+          1824
+        ]
+      },
+      "bonesHuman": {
+        "ObjectPivot": [
+          957,
+          1857
+        ],
+        "LHand_Nub": [
+          1600,
+          752
+        ],
+        "LHand": [
+          1536,
+          752
+        ],
+        "LForearm": [
+          1337,
+          752
+        ],
+        "LArm": [
+          1106,
+          752
+        ],
+        "RHand_Nub": [
+          315,
+          752
+        ],
+        "RHand": [
+          378,
+          752
+        ],
+        "RForearm": [
+          579,
+          754
+        ],
+        "RArm": [
+          807,
+          752
+        ],
+        "Head_Nub": [
+          956,
+          505
+        ],
+        "Head": [
+          956,
+          581
+        ],
+        "Neck": [
+          956,
+          666
+        ],
+        "Torso": [
+          956,
+          932
+        ],
+        "LToe_Nub": [
+          1133,
+          1857
+        ],
+        "LToe": [
+          1069,
+          1857
+        ],
+        "LFoot2": [
+          1010,
+          1857
+        ],
+        "LFoot": [
+          1010,
+          1784
+        ],
+        "LShank": [
+          1018,
+          1478
+        ],
+        "LThigh": [
+          1020,
+          1172
+        ],
+        "RToe_Nub": [
+          780,
+          1857
+        ],
+        "RToe": [
+          845,
+          1857
+        ],
+        "RFoot2": [
+          902,
+          1857
+        ],
+        "RFoot": [
+          902,
+          1784
+        ],
+        "RShank": [
+          895,
+          1478
+        ],
+        "RThigh": [
+          892,
+          1172
+        ],
+        "Hip": [
+          956,
+          1123
+        ],
+        "Root": [
+          956,
+          1856
+        ]
+      },
+      "bonesHead": {
+        "LeftBrow": [
+          979,
+          432
+        ],
+        "RightBrow": [
+          935,
+          432
+        ],
+        "LeftEye": [
+          1014,
+          461
+        ],
+        "RightEye": [
+          900,
+          461
+        ],
+        "Nose": [
+          957,
+          484
+        ],
+        "Mouth": [
+          957,
+          552
+        ],
+        "LeftEar>LEarRing": [
+          1101,
+          504
+        ],
+        "LeftEar": [
+          1078,
+          458
+        ],
+        "RightEar>REarRing": [
+          810,
+          500
+        ],
+        "RightEar": [
+          836,
+          458
+        ],
+        "FrontHair": [
+          957,
+          295
+        ],
+        "BackHair": [
+          957,
+          341
+        ],
+        "Face": [
+          957,
+          581
+        ]
+      },
+      "hiddenDummyPixels": 62,
+      "movedBones": 0,
+      "contentBox": [
+        184,
+        180,
+        1731,
+        1973
+      ],
+      "canvas": [
+        1916,
+        2152
+      ],
+      "masks": [
+        {
+          "label": "arms",
+          "file": "/lab/masks/back/fill_arms.png",
+          "color": "#e8b08c",
+          "coverage": 0.044573,
+          "bbox": [
+            16,
+            411,
+            383,
+            670
+          ]
+        },
+        {
+          "label": "face",
+          "file": "/lab/masks/back/fill_face.png",
+          "color": "#f4c4a8",
+          "coverage": 0.002222,
+          "bbox": [
+            139,
+            140,
+            259,
+            227
+          ]
+        },
+        {
+          "label": "feet",
+          "file": "/lab/masks/back/fill_feet.png",
+          "color": "#1c1c20",
+          "coverage": 0.01966,
+          "bbox": [
+            58,
+            1126,
+            342,
+            1222
+          ]
+        },
+        {
+          "label": "hair",
+          "file": "/lab/masks/back/fill_hair.png",
+          "color": "#3a2a24",
+          "coverage": 0.025068,
+          "bbox": [
+            139,
+            61,
+            259,
+            202
+          ]
+        },
+        {
+          "label": "hands",
+          "file": "/lab/masks/back/fill_hands.png",
+          "color": "#d4a07a",
+          "coverage": 0.015806,
+          "bbox": [
+            23,
+            632,
+            377,
+            740
+          ]
+        },
+        {
+          "label": "legs",
+          "file": "/lab/masks/back/fill_legs.png",
+          "color": "#e8e8ec",
+          "coverage": 0.019154,
+          "bbox": [
+            86,
+            838,
+            317,
+            916
+          ]
+        },
+        {
+          "label": "pants",
+          "file": "/lab/masks/back/fill_pants.png",
+          "color": "#303038",
+          "coverage": 0.142432,
+          "bbox": [
+            67,
+            653,
+            334,
+            1155
+          ]
+        },
+        {
+          "label": "top",
+          "file": "/lab/masks/back/fill_top.png",
+          "color": "#d64040",
+          "coverage": 0.200554,
+          "bbox": [
+            28,
+            225,
+            371,
+            825
+          ]
+        },
+        {
+          "label": "torso",
+          "file": "/lab/masks/back/fill_torso.png",
+          "color": "#b03030",
+          "coverage": 0.004149,
+          "bbox": [
+            160,
+            185,
+            242,
+            227
+          ]
+        }
+      ],
+      "parser": "fashn-ai/fashn-human-parser",
+      "lrParser": "mattmdjaga/segformer_b2_clothes"
+    }
+  },
+  "mapping": [
+    {
+      "parser": "face ∪ hair",
+      "g3": "Face",
+      "mode": "union",
+      "note": "پیشانی خالی پارسر با مو پوشانده می‌شود"
+    },
+    {
+      "parser": "hair",
+      "g3": "FrontHair / BackHair",
+      "mode": "fit",
+      "note": "FrontHair برای جلو، BackHair برای پشت"
+    },
+    {
+      "parser": "torso ∪ top ∪ pants ∪ underarm − arms",
+      "g3": "Hip",
+      "mode": "stamp",
+      "note": "بدنه روی ژست ایستاده؛ زیربغل Telea بعد از حذف بازو"
+    },
+    {
+      "parser": "Left-arm / Right-arm (clothes) یا arms midline",
+      "g3": "LArm / RArm / LForearm / RForearm",
+      "mode": "stamp",
+      "note": "اسپرایت روی ژست ایستاده؛ نام گروه رسمی حفظ می‌شود"
+    },
+    {
+      "parser": "hands midline",
+      "g3": "LHand / RHand 00Relaxed",
+      "mode": "stamp",
+      "note": "دست در موقعیت عکس، داخل گروه رسمی"
+    },
+    {
+      "parser": "Left-leg / Right-leg یا legs",
+      "g3": "LThigh / RThigh / LShank / RShank",
+      "mode": "stamp · split_ud 0.42",
+      "note": "ساق روی زانوی ایستاده، نه کشیده داخل شانت T-pose"
+    },
+    {
+      "parser": "Left-shoe / Right-shoe یا feet",
+      "g3": "LFoot / RFoot",
+      "mode": "align",
+      "note": "کفش روی bbox پا"
+    },
+    {
+      "parser": "Telea underarm + forehead",
+      "g3": "Hip / Face pixels",
+      "mode": "inpaint",
+      "note": "حفرهٔ زیربغل و خط رویش مو قبل از پر کردن قالب ترمیم می‌شود"
+    }
+  ],
+  "gates": [
+    {
+      "id": "official-template",
+      "ok": true,
+      "label": "قالب رسمی HumanwithSpriteHand.psd",
+      "detail": "منبع: Cartoon Animator 5 PSD Pipeline Resource — بدون ساخت درخت G3 از صفر"
+    },
+    {
+      "id": "roots",
+      "ok": true,
+      "label": "ریشه‌های RL_ImageV2 / RL_Bone_HumanV2 / RL_Bone_HeadV2",
+      "detail": "نام لایه‌ها از dump قالب رسمی خوانده شده‌اند"
+    },
+    {
+      "id": "fashn",
+      "ok": true,
+      "label": "پارسر بدن FASHN نه ADE20k",
+      "detail": "fashn-ai/fashn-human-parser"
+    },
+    {
+      "id": "no-invented-names",
+      "ok": true,
+      "label": "هیچ نام گروه G3 اختراع نشده",
+      "detail": "جایگذاری فقط روی گروه‌های موجود قالب"
+    },
+    {
+      "id": "front-lr",
+      "ok": true,
+      "label": "نمای جلو: L کاراکتر = راست بیننده",
+      "detail": "arms split=parser-lr"
+    },
+    {
+      "id": "placed-core",
+      "ok": true,
+      "label": "گروه‌های اصلی تصویر پر شده‌اند",
+      "detail": "Face, Hip, LArm, LFoot, LForearm, LHand, LShank, LThigh, RArm, RFoot, RForearm, RHand, RShank, RThigh"
+    },
+    {
+      "id": "dummy-hidden",
+      "ok": true,
+      "label": "پیکسل‌های ساختگی قالب مخفی شده‌اند",
+      "detail": "front 62 · back 62"
+    },
+    {
+      "id": "bones-moved",
+      "ok": false,
+      "label": "نشان‌های RL_Bone روی مفاصل ژست ایستاده",
+      "detail": "front 0 · back 0"
+    },
+    {
+      "id": "pose-stamp",
+      "ok": false,
+      "label": "اسپرایت روی ژست ایستاده نه T-pose stretch",
+      "detail": "mode=fit,fit|rot-90,fit|rot90"
+    },
+    {
+      "id": "face-angles",
+      "ok": true,
+      "label": "Face فقط گروه زاویه Center دارد",
+      "detail": "پیکسل صورت داخل Face/Center/Face با نام رسمی Face — نه Face_fill"
+    },
+    {
+      "id": "inpaint",
+      "ok": false,
+      "label": "Inpaint زیر بغل / پیشانی",
+      "detail": "هنوز اجرا نشده"
+    },
+    {
+      "id": "cta5-motion",
+      "ok": false,
+      "label": "تست موشن Cartoon Animator 5",
+      "detail": "خارج از این محیط — PSD را Drag & Drop کنید"
+    }
+  ]
+}

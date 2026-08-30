@@ -1,0 +1,218 @@
+{
+  "view": "front",
+  "image": "/workspace/public/lab/front.png",
+  "parser": "fashn-ai/fashn-human-parser",
+  "lr_parser": "mattmdjaga/segformer_b2_clothes",
+  "parts": [
+    {
+      "label": "background",
+      "file": "fill_background.png"
+    },
+    {
+      "label": "face",
+      "file": "fill_face.png"
+    },
+    {
+      "label": "hair",
+      "file": "fill_hair.png"
+    },
+    {
+      "label": "top",
+      "file": "fill_top.png"
+    },
+    {
+      "label": "pants",
+      "file": "fill_pants.png"
+    },
+    {
+      "label": "arms",
+      "file": "fill_arms.png"
+    },
+    {
+      "label": "hands",
+      "file": "fill_hands.png"
+    },
+    {
+      "label": "legs",
+      "file": "fill_legs.png"
+    },
+    {
+      "label": "feet",
+      "file": "fill_feet.png"
+    },
+    {
+      "label": "torso",
+      "file": "fill_torso.png"
+    },
+    {
+      "label": "larm",
+      "file": "fill_larm.png"
+    },
+    {
+      "label": "left-arm",
+      "file": "fill_left-arm.png"
+    },
+    {
+      "label": "rarm",
+      "file": "fill_rarm.png"
+    },
+    {
+      "label": "right-arm",
+      "file": "fill_right-arm.png"
+    },
+    {
+      "label": "lleg",
+      "file": "fill_lleg.png"
+    },
+    {
+      "label": "left-leg",
+      "file": "fill_left-leg.png"
+    },
+    {
+      "label": "rleg",
+      "file": "fill_rleg.png"
+    },
+    {
+      "label": "right-leg",
+      "file": "fill_right-leg.png"
+    },
+    {
+      "label": "lfoot",
+      "file": "fill_lfoot.png"
+    },
+    {
+      "label": "left-shoe",
+      "file": "fill_left-shoe.png"
+    },
+    {
+      "label": "rfoot",
+      "file": "fill_rfoot.png"
+    },
+    {
+      "label": "right-shoe",
+      "file": "fill_right-shoe.png"
+    }
+  ],
+  "fashn": [
+    {
+      "label": "arms",
+      "file": "00_arms.png",
+      "bbox": [
+        58,
+        411,
+        423,
+        645
+      ],
+      "coverage": 0.040298,
+      "source": "fashn-ai/fashn-human-parser"
+    },
+    {
+      "label": "background",
+      "file": "01_background.png",
+      "bbox": [
+        0,
+        0,
+        438,
+        1264
+      ],
+      "coverage": 0.552995,
+      "source": "fashn-ai/fashn-human-parser"
+    },
+    {
+      "label": "face",
+      "file": "02_face.png",
+      "bbox": [
+        177,
+        100,
+        300,
+        231
+      ],
+      "coverage": 0.018993,
+      "source": "fashn-ai/fashn-human-parser"
+    },
+    {
+      "label": "feet",
+      "file": "03_feet.png",
+      "bbox": [
+        87,
+        1116,
+        391,
+        1225
+      ],
+      "coverage": 0.024525,
+      "source": "fashn-ai/fashn-human-parser"
+    },
+    {
+      "label": "hair",
+      "file": "04_hair.png",
+      "bbox": [
+        177,
+        60,
+        297,
+        192
+      ],
+      "coverage": 0.009835,
+      "source": "fashn-ai/fashn-human-parser"
+    },
+    {
+      "label": "hands",
+      "file": "05_hands.png",
+      "bbox": [
+        60,
+        630,
+        419,
+        742
+      ],
+      "coverage": 0.01561,
+      "source": "fashn-ai/fashn-human-parser"
+    },
+    {
+      "label": "legs",
+      "file": "06_legs.png",
+      "bbox": [
+        123,
+        837,
+        359,
+        918
+      ],
+      "coverage": 0.020244,
+      "source": "fashn-ai/fashn-human-parser"
+    },
+    {
+      "label": "pants",
+      "file": "07_pants.png",
+      "bbox": [
+        104,
+        649,
+        374,
+        1119
+      ],
+      "coverage": 0.130247,
+      "source": "fashn-ai/fashn-human-parser"
+    },
+    {
+      "label": "top",
+      "file": "08_top.png",
+      "bbox": [
+        69,
+        229,
+        407,
+        655
+      ],
+      "coverage": 0.178884,
+      "source": "fashn-ai/fashn-human-parser"
+    },
+    {
+      "label": "torso",
+      "file": "09_torso.png",
+      "bbox": [
+        194,
+        190,
+        283,
+        288
+      ],
+      "coverage": 0.008368,
+      "source": "fashn-ai/fashn-human-parser"
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "url": "http://127.0.0.1:8081/",
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800,
+      "status": 200,
+      "title": "G3 Rig Lab",
+      "hasCanvas": false,
+      "bodyTextLen": 1322,
+      "bodyTextHash": "7cf5a53190ca897557308618845caab4ddf94cc24fe10679fd20ec4dd3414584",
+      "bodyTextPrefix": "G3 Cartoon Animator 5 G3 Rig Lab عکس دوبعدی به PSD انسان G3 — قا",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-built.png"
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "status": 200,
+      "title": "G3 Rig Lab",
+      "hasCanvas": false,
+      "bodyTextLen": 1241,
+      "bodyTextHash": "d0fd60eca3b4ed1bc66cd8c3b08fc786547c92dcc8d3332d059a00e8798925f7",
+      "bodyTextPrefix": "G3 Cartoon Animator 5 G3 Rig Lab عکس دوبعدی به PSD انسان G3 — قا",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-built-mobile.png"
+    }
+  },
+  "brandWarnings": [],
+  "authWarnings": [],
+  "verdictFile": "/workspace/screenshots/app-builder-built.json",
+  "divergesFromBaseline": false,
+  "baselineReasons": []
+}

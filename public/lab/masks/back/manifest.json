@@ -1,0 +1,218 @@
+{
+  "view": "back",
+  "image": "/workspace/public/lab/back.png",
+  "parser": "fashn-ai/fashn-human-parser",
+  "lr_parser": "mattmdjaga/segformer_b2_clothes",
+  "parts": [
+    {
+      "label": "background",
+      "file": "fill_background.png"
+    },
+    {
+      "label": "face",
+      "file": "fill_face.png"
+    },
+    {
+      "label": "hair",
+      "file": "fill_hair.png"
+    },
+    {
+      "label": "top",
+      "file": "fill_top.png"
+    },
+    {
+      "label": "pants",
+      "file": "fill_pants.png"
+    },
+    {
+      "label": "arms",
+      "file": "fill_arms.png"
+    },
+    {
+      "label": "hands",
+      "file": "fill_hands.png"
+    },
+    {
+      "label": "legs",
+      "file": "fill_legs.png"
+    },
+    {
+      "label": "feet",
+      "file": "fill_feet.png"
+    },
+    {
+      "label": "torso",
+      "file": "fill_torso.png"
+    },
+    {
+      "label": "larm",
+      "file": "fill_larm.png"
+    },
+    {
+      "label": "left-arm",
+      "file": "fill_left-arm.png"
+    },
+    {
+      "label": "rarm",
+      "file": "fill_rarm.png"
+    },
+    {
+      "label": "right-arm",
+      "file": "fill_right-arm.png"
+    },
+    {
+      "label": "lleg",
+      "file": "fill_lleg.png"
+    },
+    {
+      "label": "left-leg",
+      "file": "fill_left-leg.png"
+    },
+    {
+      "label": "rleg",
+      "file": "fill_rleg.png"
+    },
+    {
+      "label": "right-leg",
+      "file": "fill_right-leg.png"
+    },
+    {
+      "label": "lfoot",
+      "file": "fill_lfoot.png"
+    },
+    {
+      "label": "left-shoe",
+      "file": "fill_left-shoe.png"
+    },
+    {
+      "label": "rfoot",
+      "file": "fill_rfoot.png"
+    },
+    {
+      "label": "right-shoe",
+      "file": "fill_right-shoe.png"
+    }
+  ],
+  "fashn": [
+    {
+      "label": "arms",
+      "file": "00_arms.png",
+      "bbox": [
+        16,
+        411,
+        383,
+        670
+      ],
+      "coverage": 0.044573,
+      "source": "fashn-ai/fashn-human-parser"
+    },
+    {
+      "label": "background",
+      "file": "01_background.png",
+      "bbox": [
+        0,
+        0,
+        414,
+        1264
+      ],
+      "coverage": 0.526383,
+      "source": "fashn-ai/fashn-human-parser"
+    },
+    {
+      "label": "face",
+      "file": "02_face.png",
+      "bbox": [
+        139,
+        140,
+        259,
+        227
+      ],
+      "coverage": 0.002222,
+      "source": "fashn-ai/fashn-human-parser"
+    },
+    {
+      "label": "feet",
+      "file": "03_feet.png",
+      "bbox": [
+        58,
+        1126,
+        342,
+        1222
+      ],
+      "coverage": 0.01966,
+      "source": "fashn-ai/fashn-human-parser"
+    },
+    {
+      "label": "hair",
+      "file": "04_hair.png",
+      "bbox": [
+        139,
+        61,
+        259,
+        202
+      ],
+      "coverage": 0.025068,
+      "source": "fashn-ai/fashn-human-parser"
+    },
+    {
+      "label": "hands",
+      "file": "05_hands.png",
+      "bbox": [
+        23,
+        632,
+        377,
+        740
+      ],
+      "coverage": 0.015806,
+      "source": "fashn-ai/fashn-human-parser"
+    },
+    {
+      "label": "legs",
+      "file": "06_legs.png",
+      "bbox": [
+        86,
+        838,
+        317,
+        916
+      ],
+      "coverage": 0.019154,
+      "source": "fashn-ai/fashn-human-parser"
+    },
+    {
+      "label": "pants",
+      "file": "07_pants.png",
+      "bbox": [
+        67,
+        653,
+        334,
+        1155
+      ],
+      "coverage": 0.142432,
+      "source": "fashn-ai/fashn-human-parser"
+    },
+    {
+      "label": "top",
+      "file": "08_top.png",
+      "bbox": [
+        28,
+        225,
+        371,
+        825
+      ],
+      "coverage": 0.200554,
+      "source": "fashn-ai/fashn-human-parser"
+    },
+    {
+      "label": "torso",
+      "file": "09_torso.png",
+      "bbox": [
+        160,
+        185,
+        242,
+        227
+      ],
+      "coverage": 0.004149,
+      "source": "fashn-ai/fashn-human-parser"
+    }
+  ]
+}
