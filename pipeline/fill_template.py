@@ -15,6 +15,8 @@ import json
 import sys
 from pathlib import Path
 
+import numpy as np
+import cv2
 from PIL import Image, ImageChops, ImageFilter
 
 
@@ -84,6 +86,30 @@ def subtract_mask(base: Image.Image | None, cut: Image.Image | None, dilate: int
             size += 1
         cutb = cutb.filter(ImageFilter.MaxFilter(size))
     return ImageChops.subtract(binary, cutb)
+
+
+def largest_component(mask: Image.Image) -> Image.Image:
+    """Drop every blob but the largest connected one.
+
+    fit_sprite crops to the mask's overall bounding box, then stretches that
+    whole box (including any empty gap inside it) into the dummy dest. A
+    segmentation split (e.g. overlap_ud on a leg mask) can leave a second,
+    real but disconnected patch below a gap — stretching the combined bbox
+    then paints real content, then a stretched-out empty gap, then that
+    second patch floating on its own. A single limb group should be one
+    contiguous blob, so keep only the biggest one.
+    """
+    arr = np.array(mask.convert("L"))
+    binary = (arr > 0).astype("uint8")
+    if not binary.any():
+        return mask
+    num_labels, labels, stats, _ = cv2.connectedComponentsWithStats(binary, connectivity=8)
+    if num_labels <= 2:
+        return mask
+    areas = stats[1:, cv2.CC_STAT_AREA]
+    best_label = int(np.argmax(areas)) + 1
+    cleaned = np.where(labels == best_label, arr, 0).astype("uint8")
+    return Image.fromarray(cleaned, "L")
 
 
 def scale_l_mask(mask: Image.Image, canvas_size: tuple[int, int], content_box) -> Image.Image:
@@ -404,7 +430,7 @@ def main() -> int:
     modes: dict[str, str] = {}
     splits: dict[str, str] = {}
 
-    def place(label_keys, group_name, preferred_pixel=(), union=False, mode="fit", rotate=0):
+    def place(label_keys, group_name, preferred_pixel=(), union=False, mode="fit", rotate=0, clean=False):
         if union:
             mask = union_masks(masks, label_keys)
         else:
@@ -416,6 +442,8 @@ def main() -> int:
         if mask is None:
             print(f"skip {group_name}: no mask in {label_keys}")
             return
+        if clean:
+            mask = largest_component(mask)
         scaled_mask = scale_l_mask(mask, canvas.size, content_box)
         part = apply_mask(rgb, scaled_mask)
         if rotate:
@@ -433,14 +461,18 @@ def main() -> int:
             layer.visible = False
 
     # Face = complete photo head fitted into dummy Face. No extra feature sprites.
-    face = union_masks(masks, ("face", "hair", "forehead"))
+    # Face = face photo plus only the thin forehead gap the parser leaves at the
+    # hairline — NOT the full hair silhouette. Hair is its own layer below
+    # (FrontHair/BackHair); unioning the whole "hair" mask in here too stretches
+    # the same hair into two different dummy boxes and doubles/ghosts it.
+    face = union_masks(masks, ("face", "forehead"))
     if face is not None:
         masks["head_full"] = face
         place(("head_full",), "Face")
     else:
-        place(("face", "hair"), "Face", union=True)
+        place(("face",), "Face")
 
-    # Hair also goes into its own official group (FrontHair for the front view,
+    # Hair goes into its own official group (FrontHair for the front view,
     # BackHair for the back view) so CTA5 can move/spring it independently of
     # the flat Face photo. Without this, erase_unplaced_head_dummies below
     # deletes the template's default hair pixels and the character comes out bald.
@@ -482,16 +514,16 @@ def main() -> int:
         if "lforearm" in masks:
             masks["lforearm"] = subtract_mask(masks["lforearm"], l_hand, dilate=1) or masks["lforearm"]
             masks["rforearm"] = subtract_mask(masks["rforearm"], r_hand, dilate=1) or masks["rforearm"]
-        place(("lhand",), "LHand", ("00Relaxed",), rotate=90)
-        place(("rhand",), "RHand", ("00Relaxed",), rotate=-90)
+        place(("lhand",), "LHand", ("00Relaxed",), rotate=90, clean=True)
+        place(("rhand",), "RHand", ("00Relaxed",), rotate=-90, clean=True)
         hide_other_hand_poses(psd, "LHand")
         hide_other_hand_poses(psd, "RHand")
 
     if l_arm is not None:
-        place(("larm",), "LArm", rotate=90)
-        place(("rarm",), "RArm", rotate=-90)
-        place(("lforearm",), "LForearm", rotate=90)
-        place(("rforearm",), "RForearm", rotate=-90)
+        place(("larm",), "LArm", rotate=90, clean=True)
+        place(("rarm",), "RArm", rotate=-90, clean=True)
+        place(("lforearm",), "LForearm", rotate=90, clean=True)
+        place(("rforearm",), "RForearm", rotate=-90, clean=True)
 
     if "feet" in masks:
         l_foot, r_foot = split_lr(masks["feet"], args.view)
@@ -502,8 +534,8 @@ def main() -> int:
     if l_foot is not None:
         masks["lfoot"] = l_foot
         masks["rfoot"] = r_foot
-        place(("lfoot",), "LFoot")
-        place(("rfoot",), "RFoot")
+        place(("lfoot",), "LFoot", clean=True)
+        place(("rfoot",), "RFoot", clean=True)
 
     l_leg, r_leg, leg_split = lr_pair(masks, "legs", ("lleg", "left-leg"), ("rleg", "right-leg"), args.view)
     splits["legs"] = leg_split
@@ -520,10 +552,10 @@ def main() -> int:
             r_leg = subtract_mask(r_leg, r_foot, dilate=2) or r_leg
         masks["lthigh"], masks["lshank"] = overlap_ud(l_leg, 0.58, 0.38)
         masks["rthigh"], masks["rshank"] = overlap_ud(r_leg, 0.58, 0.38)
-        place(("lthigh",), "LThigh")
-        place(("rthigh",), "RThigh")
-        place(("lshank",), "LShank")
-        place(("rshank",), "RShank")
+        place(("lthigh",), "LThigh", clean=True)
+        place(("rthigh",), "RThigh", clean=True)
+        place(("lshank",), "LShank", clean=True)
+        place(("rshank",), "RShank", clean=True)
 
     hidden = erase_unplaced_head_dummies(psd, placed)
     print(f"erased {hidden} unused dummy head pixels (CTA5 ignores hide)")
