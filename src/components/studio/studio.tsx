@@ -1,7 +1,15 @@
 import { useEffect, useState } from "react";
-import { BAKED_RUN, FALLBACK_RUN, loadLabRun, type LabRun, type LabViewId, type StageMode } from "@/lib/lab";
+import {
+  BAKED_RUN,
+  FALLBACK_RUN,
+  loadLabRun,
+  type LabRun,
+  type LabViewId,
+  type StageMode,
+} from "@/lib/lab";
 import { Badge } from "@/components/ui/badge";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { GeneratePanel } from "@/components/studio/generate-panel";
 import { Inspector } from "@/components/studio/inspector";
 import { PackBanner, PackDownload } from "@/components/studio/pack-download";
 import { Stage } from "@/components/studio/stage";
@@ -64,6 +72,7 @@ export function Studio() {
           </div>
         </header>
 
+        <GeneratePanel />
         <PackBanner run={run} />
 
         <div className="flex flex-wrap items-center gap-2 border-b border-border px-4 py-2 lg:px-6">

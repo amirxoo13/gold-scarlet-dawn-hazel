@@ -176,23 +176,6 @@ def overlap_ud(mask: Image.Image, upper_end: float = 0.55, lower_start: float = 
             if y >= y_lower_start:
                 lower_data[x, y] = value
     return upper, lower
-    box = mask.getbbox()
-    upper = Image.new("L", mask.size, 0)
-    lower = Image.new("L", mask.size, 0)
-    if box is None:
-        return upper, lower
-    _l, top, _r, bottom = box
-    split_y = top + max(1, int((bottom - top) * upper_ratio))
-    data = mask.load()
-    upper_data = upper.load()
-    lower_data = lower.load()
-    for y in range(top, bottom):
-        dest = upper_data if y < split_y else lower_data
-        for x in range(_l, _r):
-            value = data[x, y]
-            if value:
-                dest[x, y] = value
-    return upper, lower
 
 
 def apply_mask(rgb: Image.Image, mask: Image.Image) -> Image.Image:
@@ -456,6 +439,13 @@ def main() -> int:
         place(("head_full",), "Face")
     else:
         place(("face", "hair"), "Face", union=True)
+
+    # Hair also goes into its own official group (FrontHair for the front view,
+    # BackHair for the back view) so CTA5 can move/spring it independently of
+    # the flat Face photo. Without this, erase_unplaced_head_dummies below
+    # deletes the template's default hair pixels and the character comes out bald.
+    hair_group = "BackHair" if args.view == "back" else "FrontHair"
+    place(("hair",), hair_group)
 
     # Hip = jersey + shorts. Socks go to shanks so knees can bend.
     hip_parts = ["torso", "top", "dress", "skirt", "belt", "underarm"]

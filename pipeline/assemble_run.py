@@ -29,7 +29,7 @@ COLORS = {
 MAPPING = [
     {"parser": "face ∪ hair", "g3": "Face", "mode": "union", "note": "پیشانی خالی پارسر با مو پوشانده می‌شود"},
     {"parser": "hair", "g3": "FrontHair / BackHair", "mode": "fit", "note": "FrontHair برای جلو، BackHair برای پشت"},
-    {"parser": "torso ∪ top ∪ pants ∪ underarm − arms", "g3": "Hip", "mode": "stamp", "note": "بدنه روی ژست ایستاده؛ زیربغل Telea بعد از حذف بازو"},
+    {"parser": "torso ∪ top ∪ dress ∪ skirt ∪ belt ∪ underarm ∪ (shorts یا pants) − arms/hands", "g3": "Hip", "mode": "stamp", "note": "بدنه روی ژست ایستاده؛ زیربغل Telea بعد از حذف بازو؛ اگر pants باشد بالای آن shorts می‌شود و پایین آن به ساق می‌رود"},
     {"parser": "Left-arm / Right-arm (clothes) یا arms midline", "g3": "LArm / RArm / LForearm / RForearm", "mode": "stamp", "note": "اسپرایت روی ژست ایستاده؛ نام گروه رسمی حفظ می‌شود"},
     {"parser": "hands midline", "g3": "LHand / RHand 00Relaxed", "mode": "stamp", "note": "دست در موقعیت عکس، داخل گروه رسمی"},
     {"parser": "Left-leg / Right-leg یا legs", "g3": "LThigh / RThigh / LShank / RShank", "mode": "stamp · split_ud 0.42", "note": "ساق روی زانوی ایستاده، نه کشیده داخل شانت T-pose"},
@@ -84,9 +84,24 @@ def view_payload(report: dict, manifest: dict, view: str) -> dict:
 
 
 def gates(front: dict, back: dict, front_m: dict, back_m: dict) -> list[dict]:
-    fashn_ok = front_m.get("parser", "").startswith("fashn-ai/") and back_m.get("parser", "").startswith("fashn-ai/")
+    # back_m is legitimately empty for a front-only job (no back photo supplied) —
+    # don't fail this gate just because there is no back manifest to check.
+    fashn_ok = front_m.get("parser", "").startswith("fashn-ai/") and (
+        not back_m or back_m.get("parser", "").startswith("fashn-ai/")
+    )
     placed = set(front.get("placed", [])) | set(back.get("placed", []))
-    required = {"Face", "Hip", "LArm", "RArm", "LThigh", "RThigh", "LFoot", "RFoot"}
+    required = {
+        "Face",
+        "FrontHair",
+        "BackHair",
+        "Hip",
+        "LArm",
+        "RArm",
+        "LThigh",
+        "RThigh",
+        "LFoot",
+        "RFoot",
+    }
     fi = front_m.get("inpaint") or {}
     bi = back_m.get("inpaint") or {}
     under = int(fi.get("underarmPixels") or 0) + int(bi.get("underarmPixels") or 0)
@@ -98,7 +113,12 @@ def gates(front: dict, back: dict, front_m: dict, back_m: dict) -> list[dict]:
         else "هنوز اجرا نشده"
     )
     stamp_modes = set((front.get("modes") or {}).values()) | set((back.get("modes") or {}).values())
-    stamp_ok = bool(stamp_modes) and stamp_modes <= {"stamp"}
+    # fill_template.py reports "fit" (aspect-preserving contain-fit into the
+    # dummy dest bbox, optionally "|rotNN") or "align" (direct crop) — both
+    # keep the photo's real standing pose. Neither is the literal string
+    # "stamp"; that was this gate's old, impossible success value.
+    non_stamp_modes = {m for m in stamp_modes if m.split("|", 1)[0] not in {"fit", "align"}}
+    stamp_ok = bool(stamp_modes) and not non_stamp_modes
     stamp_detail = "mode=" + ",".join(sorted(stamp_modes)) if stamp_modes else "missing"
     return [
         {

@@ -17,10 +17,26 @@ $PY "$ROOT/pipeline/parse_character.py" --image "$LAB/front.png" --out "$TMP/mas
 echo "== parse back =="
 $PY "$ROOT/pipeline/parse_character.py" --image "$LAB/back.png" --out "$TMP/masks/back" --view back
 
+echo "== inpaint front (underarm/forehead holes) =="
+$PY "$ROOT/pipeline/inpaint_holes.py" \
+  --image "$LAB/front.png" \
+  --masks "$TMP/masks/front" \
+  --out-image "$TMP/front_inpainted.png" \
+  --out-overlay "$LAB/overlays/front_holes.png" \
+  --out-report "$TMP/front_inpaint_report.json"
+
+echo "== inpaint back (underarm/forehead holes) =="
+$PY "$ROOT/pipeline/inpaint_holes.py" \
+  --image "$LAB/back.png" \
+  --masks "$TMP/masks/back" \
+  --out-image "$TMP/back_inpainted.png" \
+  --out-overlay "$LAB/overlays/back_holes.png" \
+  --out-report "$TMP/back_inpaint_report.json"
+
 echo "== fill front =="
 $PY "$ROOT/pipeline/fill_template.py" \
   --template "$TEMPLATE" \
-  --image "$LAB/front.png" \
+  --image "$TMP/front_inpainted.png" \
   --masks "$TMP/masks/front" \
   --out "$LAB/front_filled.psd" \
   --preview "$LAB/front_filled.png" \
@@ -30,7 +46,7 @@ $PY "$ROOT/pipeline/fill_template.py" \
 echo "== fill back =="
 $PY "$ROOT/pipeline/fill_template.py" \
   --template "$TEMPLATE" \
-  --image "$LAB/back.png" \
+  --image "$TMP/back_inpainted.png" \
   --masks "$TMP/masks/back" \
   --out "$LAB/back_filled.psd" \
   --preview "$LAB/back_filled.png" \
