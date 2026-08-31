@@ -24,11 +24,14 @@ export const Route = createFileRoute("/api/generate")({
         }
 
         try {
-          const result = await generateCharacter({
-            front,
-            back: back instanceof File ? back : null,
-            name: typeof name === "string" && name.trim() ? name.trim() : "Character",
-          });
+          const result = await generateCharacter(
+            {
+              front,
+              back: back instanceof File ? back : null,
+              name: typeof name === "string" && name.trim() ? name.trim() : "Character",
+            },
+            request.signal,
+          );
           const gatesHeader = encodeURIComponent(JSON.stringify(result.gates));
           return new Response(new Uint8Array(result.zip), {
             status: 200,

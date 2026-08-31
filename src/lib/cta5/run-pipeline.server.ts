@@ -13,7 +13,10 @@ if (typeof window !== "undefined") {
 const REPO_ROOT = process.cwd();
 const PYTHON_BIN = process.env.PYTHON_BIN || "python3";
 const MAX_UPLOAD_BYTES = 15 * 1024 * 1024;
-const MAX_JOB_MS = 4 * 60 * 1000;
+// Two sequential HF model calls per view (FASHN + the L/R clothes assist),
+// plus a possible cold start, can run several minutes — give this real
+// headroom rather than racing it.
+const MAX_JOB_MS = 8 * 60 * 1000;
 
 const EXT_BY_MIME = new Map<string, string>([
   ["image/jpeg", ".jpg"],
@@ -68,15 +71,37 @@ async function saveUpload(file: File, dest: string): Promise<void> {
   await writeFile(dest, buffer);
 }
 
-function runPython(args: string[]): Promise<{ code: number; stdout: string; stderr: string }> {
+function runPython(
+  args: string[],
+  signal?: AbortSignal,
+): Promise<{ code: number; stdout: string; stderr: string }> {
   return new Promise((resolve, reject) => {
     const child = spawn(PYTHON_BIN, args, { cwd: REPO_ROOT, env: process.env });
     let stdout = "";
     let stderr = "";
+    let settled = false;
+
+    const cleanup = () => {
+      clearTimeout(timer);
+      signal?.removeEventListener("abort", onAbort);
+    };
     const timer = setTimeout(() => {
+      settled = true;
       child.kill("SIGKILL");
+      cleanup();
       reject(new PipelineError("پردازش بیش از حد طول کشید و متوقف شد.", 504));
     }, MAX_JOB_MS);
+    // The browser tab closing or the request being cancelled shouldn't leave
+    // an HF-inference python process burning the user's quota in the background.
+    const onAbort = () => {
+      if (settled) return;
+      settled = true;
+      child.kill("SIGKILL");
+      cleanup();
+      reject(new PipelineError("درخواست لغو شد.", 499));
+    };
+    signal?.addEventListener("abort", onAbort);
+
     child.stdout.on("data", (chunk: Buffer) => {
       stdout += chunk.toString();
     });
@@ -84,21 +109,24 @@ function runPython(args: string[]): Promise<{ code: number; stdout: string; stde
       stderr += chunk.toString();
     });
     child.on("error", (err) => {
-      clearTimeout(timer);
+      if (settled) return;
+      settled = true;
+      cleanup();
       reject(new PipelineError(`اجرای python3 ممکن نشد: ${err.message}`, 500));
     });
     child.on("close", (code) => {
-      clearTimeout(timer);
+      if (settled) return;
+      settled = true;
+      cleanup();
       resolve({ code: code ?? 1, stdout, stderr });
     });
   });
 }
 
-export async function generateCharacter({
-  front,
-  back,
-  name,
-}: GenerateInput): Promise<GenerateResult> {
+export async function generateCharacter(
+  { front, back, name }: GenerateInput,
+  signal?: AbortSignal,
+): Promise<GenerateResult> {
   if (!process.env.HF_TOKEN && !process.env.HUGGING_FACE_HUB_TOKEN) {
     throw new PipelineError(
       "HF_TOKEN تنظیم نشده. یک Access Token از huggingface.co/settings/tokens بساز و آن را به‌عنوان متغیر محیطی HF_TOKEN در تنظیمات محیط قرار بده — این سرویس توکن را از بدنهٔ درخواست قبول نمی‌کند.",
@@ -138,7 +166,7 @@ export async function generateCharacter({
     ];
     if (backPath) args.push("--back", backPath);
 
-    const { code, stdout, stderr } = await runPython(args);
+    const { code, stdout, stderr } = await runPython(args, signal);
     if (code !== 0) {
       const tail = (stderr || stdout).trim().split("\n").slice(-6).join("\n");
       throw new PipelineError(`پایپ‌لاین شکست خورد:\n${tail || "خطای نامشخص"}`, 502);
